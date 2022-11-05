@@ -1,5 +1,7 @@
+// Select element needed to input information
 const section = document.querySelector('.rick-morty')
 
+// Create fetch and error script
 const fetchData = async function(endpoint) {
   try {
   const response = await fetch(endpoint);
@@ -11,6 +13,7 @@ const fetchData = async function(endpoint) {
 
   let output = '';
 
+  // Create API json collector function
   const handleInfo = function(rickMorty) {
     output += `
     <article>
@@ -30,12 +33,15 @@ const fetchData = async function(endpoint) {
 
   rickMorty.forEach(handleInfo);
 
+  // Print info into created const
   section.innerHTML = output;
 
+  // Catch error if there is bug
 } catch (error){
   section.innerHTML = `<h2>There was an error</h2>
                         <p>${error.message}</p>`;
 }
 }
 
+// Link API to fetch from
 fetchData('https://rickandmortyapi.com/api/character/1,2,20,24,105,121,155,193,306,420,549,,666');
